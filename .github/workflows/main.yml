@@ -4,6 +4,7 @@ jobs:
   Testing:
     runs-on: ubuntu-latest
     steps:
+#below we are doing code checkout and test
       - name: code checkout
         uses: actions/checkout@v4
 
@@ -13,4 +14,29 @@ jobs:
       - name: checkstyle
         run: mvn checkstyle:checkstyle
 
-        
+#scan source code with sonar scanner upload the result to sonar cloud and check quality of the code.in ubantu there is no direct tool to scan, we can use market tools for that we have to check dependency
+      - name: set java 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' 
+          java-version: '11'
+# Setup sonar-scanner
+      - name: Setup SonarQube
+        uses: warchant/setup-sonar-scanner@v7
+# Run sonar-scanner
+      - name: SonarQube Scan
+        run: sonar-scanner
+           -Dsonar.host.url=${{ secrets.SONAR_URL }}  #variable from secrets
+           -Dsonar.login=${{ secrets.SONAR_TOKEN }}   #variable from secrets
+           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} #variable from secrets
+           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} #variable from secrets
+           -Dsonar.source=src/   #in source code we have this folder that we have to scan
+           -Dsonar.junit.reportsPath=target/surefire-reports/  #these all store in sonar cloud
+           -Dsonar.jacoco.reportsPath=target/jacoco.exec
+           -Dsonar.java.checkstyle.reportsPath=target/checkstyle-result.xml
+           -Dsonar.java.binaries=target/test-classes/com/visualpathit/account
+
+
+
+
+
