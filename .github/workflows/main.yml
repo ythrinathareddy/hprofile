@@ -25,18 +25,16 @@ jobs:
         uses: warchant/setup-sonar-scanner@v7
 # Run sonar-scanner
       - name: SonarQube Scan
-        run: |
-            -Dsonar.host.url=${{ secrets.SONAR_URL }} \ #variable from secrets
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \  #variable from secrets
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \ #variable from secrets
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \ #variable from secrets
-            -Dsonar.source=src/ \  #in source code we have this folder that we have to scan
-            -Dsonar.junit.reportsPath=target/surefire-reports/ \ #these all store in sonar cloud
+        run: sonar-scanner \
+            -Dsonar.host.url=${{ secrets.SONAR_URL }} \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+            -Dsonar.source=src/ \
+            -Dsonar.junit.reportsPath=target/surefire-reports/ \
             -Dsonar.jacoco.reportsPath=target/jacoco.exec \
             -Dsonar.java.checkstyle.reportsPath=target/checkstyle-result.xml \
-            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account \
-
-
-
-
-
+            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account
+      
+      
+      
