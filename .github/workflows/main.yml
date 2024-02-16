@@ -15,18 +15,23 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: list the current directory
-        run: ls -action
+        run: ls -a
               
-      - name: what is in the target folder
+      - name: Print Contents of the Target Folder
         run: |
           cd target
           pwd
           ls -a
-      - uses: actions/upload-artifact@v4
-        with:
-        name: my-artifact
-        path: path/to/artifact/ # or path/to/artifact
+    # Set a variable for the artifact path
+      - name: Set Artifact Path
+        run: echo "::set-output name=artifactPath::path/to/artifact/"
 
+    # Use the variable in the upload artifact step
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: ${{ steps.setArtifactPath.outputs.artifactPath }}
       
       
       
