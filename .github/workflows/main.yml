@@ -22,16 +22,13 @@ jobs:
           cd target
           pwd
           ls -a
-    # Set a variable for the artifact path
-      - name: Set Artifact Path
-        run: echo "::set-output name=artifactPath::path/to/artifact/"
-
-    # Use the variable in the upload artifact step
+    
+     # Use the variable in the upload artifact step
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: vprofile
-          path: ${{ steps.setArtifactPath.outputs.artifactPath }}
+          path: /home/runner/work/hprofile/hprofile/target
       
       
       
