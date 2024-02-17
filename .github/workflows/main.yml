@@ -58,7 +58,7 @@ jobs:
         with:
           name: vprofile
           #path: /home/runner/work/hprofile/hprofile/target
-          path:target/*.war
+          path: target/*.war
 
 #ci pipeline completed
 
