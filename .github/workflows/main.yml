@@ -1,3 +1,4 @@
+#ci pipeline start, code checkout, test, build, scan, publish
 name: action test
 on: workflow_dispatch
 jobs:
@@ -34,10 +35,10 @@ jobs:
       - name: SonarQube Scan 
         run: sonar-scanner 
             -Dsonar.host.url=${{ secrets.SONAR_URL }} 
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} 
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} 
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} 
-            -Dsonar.source=src/ 
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.source=src/
             -Dsonar.junit.reportsPath=target/surefire-reports/ 
             -Dsonar.jacoco.reportsPath=target/jacoco.exec 
             -Dsonar.java.checkstyle.reportsPath=target/checkstyle-result.xml 
@@ -56,7 +57,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: vprofile
-          path: /home/runner/work/hprofile/hprofile/target
+          #path: /home/runner/work/hprofile/hprofile/target
+          path:target/*.war
+
+#ci pipeline completed
+
+#cd pipeline start
+
       
       
       
