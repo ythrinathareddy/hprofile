@@ -72,7 +72,7 @@ jobs:
             name: vprofile
             path: /home/runner/work/hprofile/hprofile/target
       - name: Publish to GitHub Packages
-        run: mvn deploy --global-settings settings.xml  
+        run: mvn deploy --global-settings ${{ github.workspace }}/settings.xml  
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
       
