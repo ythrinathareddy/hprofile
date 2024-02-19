@@ -7,8 +7,8 @@
     <!-- GitHub Packages -->
     <server>
       <id>github</id>
-      <username>${env.GITHUB_ACTOR}</hprofile>
-      <password>${env.GITHUB_TOKEN}</password>
+      <username>hprofile</username>
+      <password>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</password>
     </server>
   </servers>
 
