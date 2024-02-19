@@ -59,18 +59,14 @@ jobs:
         with:
           name: vprofile
           path: /home/runner/work/hprofile/hprofile/target
-    
-  publish:
-    name: "Publish to GitHub Packages"
-    needs: [build]
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'ythrinathareddy' # && github.token != ''
-    steps:
+  
       - name: Upload
         uses: actions/download-artifact@v4
         with:
             name: vprofile
             path: /home/runner/work/hprofile/hprofile/target
+      - name: Print Directory Contents
+        run: ls -R /home/runner/work/hprofile/hprofile/
       - name: Publish to GitHub Packages
         run: mvn deploy --global-settings ${{ github.workspace }}/settings.xml  
         env:
