@@ -60,26 +60,7 @@ jobs:
           name: vprofile
           path: /home/runner/work/hprofile/hprofile/target
     
-  publish:
-    name: "Publish to GitHub Packages"
-    needs: [build]
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'ythrinathareddy' # && github.token != ''
-    steps:
-      - name: Upload
-        uses: actions/download-artifact@v4
-        with:
-          name: vprofile
-          path: /home/runner/work/hprofile/hprofile/target
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: https://npm.pkg.github.com/
-          scope: "@ythrinathareddy"
-      - run: echo "registry=https://npm.pkg.github.com/@ythrinathareddy" >> .npmrc
-      - run: npm publish $(ls *.tgz)
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}
+  
       
 
 #ci pipeline completed

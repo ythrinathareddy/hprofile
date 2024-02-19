@@ -41,3 +41,19 @@ jobs:
         run: mvn deploy -DskipTests=true --settings settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    name: "Publish to GitHub Packages"
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'ythrinathareddy' # && github.token != ''
+    steps:
+      - name: Upload
+        uses: actions/download-artifact@v4
+        with:
+          name: vprofile
+          path: /home/runner/work/hprofile/hprofile/target
+      - name: Publish to GitHub Packages
+        run: mvn deploy --settings .m2/settings.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
