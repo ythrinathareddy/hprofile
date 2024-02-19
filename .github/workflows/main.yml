@@ -64,11 +64,8 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${{secrets.GIT_TOKEN}}" >> $HOME/.npmrc
           mvn deploy -DskipTests=true --settings settings.xml
         env:
-          GITHUB_USERNAME: hprofile
-          GITHUB_PASSWORD: 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
-          #GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}    
-          #GITHUB_USERNAME: ${{ env.GITHUB_USERNAME }}
-          #GITHUB_PASSWORD: ${{ env.GITHUB_PASSWORD }}          
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}    
+             
       
 
 #ci pipeline completed
