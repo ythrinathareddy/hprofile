@@ -63,10 +63,10 @@ jobs:
 #ci pipeline completed
 
 #cd pipeline start
-   Deploy:
-     needs: build
-     runs-on: ubuntu-latest
-     steps: 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps: 
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
@@ -74,7 +74,7 @@ jobs:
           path: /home/runner/work/hp
       - name: show folder structure
         run: ls -R
-        
+
 
 
       
