@@ -63,17 +63,26 @@ jobs:
 #ci pipeline completed
 
 #cd pipeline start
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: vprofile
-          path: /home/runner/work/hp
-      - name: show folder structure
-        run: ls -R
+  #deploy:
+  #  needs: build
+  #  runs-on: ubuntu-latest
+  #  steps: 
+  #    - name: Download build artifact
+  #      uses: actions/download-artifact@v4
+  #      with:
+  #        name: vprofile
+  #        path: /home/runner/work/hprofile/hprofile/target
+  #    - name: show folder structure
+  #      run: ls -R
+  #    - name: Download Artifact from GitHub
+  #      run: |
+  #        curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -o vprofile-v2.war -L "https://github.com/your_github_userythrinathareddy/hprofile/home/runner/work/hprofile/hprofile/target/vprofile-v2.war"
+  #      # Update with your GitHub username, repository name, and the correct release tag
+#
+  #    - name: Deploy to Tomcat
+  #      run: |
+  #        curl -u admin:3nath@Reddy --upload-file vprofile-v2.war http://192.168.10:8080/u01/tomcat/webapps/manager?path=/vprofile-v2&update=true
+  #      # Update with your Tomcat username, password, host, and the correct deployment path 
 
 
 
