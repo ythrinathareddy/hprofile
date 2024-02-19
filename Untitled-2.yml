@@ -32,7 +32,12 @@ jobs:
       # Publish the Maven package to GitHub Packages
       - name: Publish to GitHub Packages
         run: |
-          echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" >> $HOME/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{secrets.GIT_TOKEN}}" >> $HOME/.npmrc
           mvn deploy -DskipTests=true --settings settings.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+
+      - name: Publish to GitHub Packages
+        run: mvn deploy -DskipTests=true --settings settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

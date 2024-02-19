@@ -58,7 +58,15 @@ jobs:
         with:
           name: vprofile
           path: /home/runner/work/hprofile/hprofile/target
+# Publish the Maven package to GitHub Packages
+      - name: Publish to GitHub Packages
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{secrets.GIT_TOKEN}}" >> $HOME/.npmrc
+          mvn deploy -DskipTests=true --settings settings.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}    
           
+      
 
 #ci pipeline completed
 
