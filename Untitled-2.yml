@@ -59,4 +59,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
 
 
+pom 
+<distributionManagement>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/ythrinathareddy/hprofile</url>
+        </repository>
+    </distributionManagement>
+    
+
          
