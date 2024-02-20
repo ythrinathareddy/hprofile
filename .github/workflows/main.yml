@@ -54,20 +54,18 @@ jobs:
  #         SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #OPTIONAL
  #    # Use the variable in the upload artifact step
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: vprofile
-          path: /home/runner/work/hprofile/hprofile/target
-      - name: Upload
-        uses: actions/download-artifact@v4
-        with:
-          name: vprofile
-      - name: Publish to GitHub Packages
-        run: mvn deploy --global-settings ${{ github.workspace }}/settings.xml  
+  publish:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish package
+        run: mvn --batch-mode deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITUSER_TOKEN }}
-      
+          GITHUB_TOKEN: ${{ secrets.GITUSER_TOKEN }}    
 
 #ci pipeline completed
 
