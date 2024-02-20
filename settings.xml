@@ -5,8 +5,8 @@
   
   <servers>
     <server>
-      <id>ghcr.io</id>
-      <username>hprofile</username>
+      <id>github</id>
+      <username>ythrinathareddy</username>
       <password>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</password>
     </server>
   </servers>
