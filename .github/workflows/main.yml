@@ -63,7 +63,7 @@ jobs:
     steps:
       #- uses: actions/checkout@v4
       - name: Publish package
-        run: mvn -X deploy --settings settings.xml
+        run: mvn -X deploy settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITUSER_TOKEN }}    
 
