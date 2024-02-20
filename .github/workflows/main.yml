@@ -61,9 +61,9 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
+      #- uses: actions/checkout@v4
       - name: Publish package
-        run: mvn --batch-mode deploy
+        run: mvn --batch-mode -X deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITUSER_TOKEN }}    
 
