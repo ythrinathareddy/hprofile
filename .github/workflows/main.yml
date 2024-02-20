@@ -1,6 +1,6 @@
 #ci pipeline start, code checkout, test, build, scan, publish
 name: action test
-on: workflow_dispatch
+on: [push,workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
