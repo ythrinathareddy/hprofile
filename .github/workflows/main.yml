@@ -59,7 +59,10 @@ jobs:
         with:
           name: vprofile
           path: /home/runner/work/hprofile/hprofile/target
-    
+      - name: Upload
+        uses: actions/download-artifact@v4
+        with:
+          name: vprofile
       - name: Publish to GitHub Packages
         run: mvn deploy --global-settings ${{ github.workspace }}/settings.xml  
         env:
