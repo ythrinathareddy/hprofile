@@ -55,6 +55,8 @@ jobs:
           path: /home/runner/work/hprofile/hprofile/target
       - name: Publish to GitHub Packages
         run: mvn deploy --settings .m2/settings.xml
+        mvn deploy -X --global-settings /path/to/settings.xml
+
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
 publish:
