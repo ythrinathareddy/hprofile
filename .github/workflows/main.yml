@@ -61,7 +61,7 @@ jobs:
       - name: Publish package
         run: mvn --batch-mode -X deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITUSER_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHP_TOKEN }}
 
 #ci pipeline completed
 
