@@ -1,0 +1,23 @@
+---
+- name: Download Maven Package from GitHub Packages
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    github_repository_owner: ythrinathareddy
+    github_repository_name: hprofile
+    github_token: "YOUR_GITHUB_TOKEN"  # Replace with your GitHub Personal Access Token
+
+  tasks:
+    - name: Set GitHub Packages Maven Repository
+      set_fact:
+        github_packages_repository: "https://maven.pkg.github.com/{{ github_repository_owner | lower }}/{{ github_repository_name }}"
+
+    - name: Configure Maven Settings
+      template:
+        src: settings.xml.j2
+        dest: "{{ ansible_env.HOME }}/.m2/settings.xml"
+      become: yes
+
+    - name: Download Maven Package
+      command: mvn org.apache.maven.plugins:maven-dependency-plugin:3.1.1:get -Dartifact={{ github_packages_repository }}:com/example/example-artifact:1.0.0 -Ddest=/path/to/download/example-artifact-1.0.0.jar
