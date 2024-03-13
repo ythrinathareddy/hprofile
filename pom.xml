@@ -6,7 +6,7 @@
     <groupId>com.mycompany.app</groupId>
     <artifactId>vprofile</artifactId>
     <packaging>war</packaging>
-    <version>v5</version>
+    <version>1.0.1</version>
     <name>Visualpathit VProfile Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
